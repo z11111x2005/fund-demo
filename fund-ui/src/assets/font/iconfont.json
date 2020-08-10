@@ -1,0 +1,30 @@
+{
+  "id": "1995712",
+  "name": "fund",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "基金",
+  "glyphs": [
+    {
+      "icon_id": "6537185",
+      "name": "分组",
+      "font_class": "fenzu",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
+      "icon_id": "6204097",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "1279034",
+      "name": "基金",
+      "font_class": "jijin",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    }
+  ]
+}
