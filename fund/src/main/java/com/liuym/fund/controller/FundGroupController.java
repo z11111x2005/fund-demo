@@ -39,8 +39,9 @@ public class FundGroupController {
         return fundGroupMapper.listMe(userId);
     }
 
-    @PostMapping("/delete/{groupId}")
-    public void delete(@PathVariable("groupId") Integer groupId){
-        fundGroupService.deleteByGroupId(groupId);
+    @PostMapping("/delete/{groupId}/{userId}")
+    public void delete(@PathVariable("groupId") Integer groupId,
+                       @PathVariable("userId") Integer userId){
+        fundGroupService.deleteByGroupId(groupId, userId);
     }
 }

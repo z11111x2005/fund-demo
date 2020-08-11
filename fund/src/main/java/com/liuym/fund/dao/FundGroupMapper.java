@@ -27,6 +27,6 @@ public interface FundGroupMapper extends BaseMapper<FundGroup> {
             "fund_group_user_relation fgur " +
             "LEFT JOIN fund_group fg ON fgur.group_id = fg.group_id " +
             "WHERE " +
-            "fgur.user_id = #{userId}")
+            "fgur.user_id = #{userId} or fg.group_type = 2")
     List<FundGroupDTO> listMe(Integer userId);
 }

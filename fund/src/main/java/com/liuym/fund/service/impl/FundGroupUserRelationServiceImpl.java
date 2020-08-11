@@ -3,7 +3,9 @@ package com.liuym.fund.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.liuym.fund.dao.FundGroupUserRelationMapper;
 import com.liuym.fund.entity.FundGroupUserRelation;
+import com.liuym.fund.exception.PlatformException;
 import com.liuym.fund.service.FundGroupUserRelationService;
+import com.liuym.fund.util.StringFormatter;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -36,9 +38,13 @@ public class FundGroupUserRelationServiceImpl implements FundGroupUserRelationSe
     }
 
     @Override
-    public void deleteByGroupId(Integer groupId) {
+    public void deleteByGroupId(Integer groupId, Integer userId) {
         QueryWrapper<FundGroupUserRelation> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("group_id", groupId);
+        FundGroupUserRelation fundGroupUserRelation = fundGroupUserRelationMapper.selectOne(queryWrapper);
+        if(fundGroupUserRelation != null && !fundGroupUserRelation.getUserId().equals(userId)){
+            throw new PlatformException("无权限删除改分组!", StringFormatter.format("无权限删除改分组!, groupId={}, userId={}", groupId, userId));
+        }
         fundGroupUserRelationMapper.delete(queryWrapper);
     }
 

@@ -96,6 +96,11 @@ export default {
   methods: {
     init () {
       this.query()
+      if (this.params.groupId) {
+        this.getFundInfo(this.params.groupId)
+      } else {
+        this.fundTableData = []
+      }
     },
     addGroup () {
       this.$refs.fundGroupAddRef.open()
@@ -125,11 +130,12 @@ export default {
         this.$message.error('刷新数据失败!')
       } else {
         this.$message.success('刷新数据成功!')
-        this.query()
+        this.init()
       }
     },
     async deleteGroup () {
-      const res = await this.$http.post(`/fund/group/delete/${this.params.groupId}`)
+      const res = await this.$http.post(`/fund/group/delete/${this.params.groupId}/${JSON.parse(window.localStorage.getItem('user')).id}`)
+      console.log(res)
       if (res.status !== 200) {
         this.$message.error('删除分组失败!')
       } else {

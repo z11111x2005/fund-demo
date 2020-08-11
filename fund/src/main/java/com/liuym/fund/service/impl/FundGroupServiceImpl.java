@@ -32,6 +32,7 @@ public class FundGroupServiceImpl implements FundGroupService {
     public void add(FundGroupFormDTO formDTO) {
         FundGroup fundGroup = new FundGroup();
         fundGroup.setGroupName(formDTO.getGroupName());
+        fundGroup.setGroupType(formDTO.getGroupType());
         fundGroupMapper.insert(fundGroup);
 
         // 新增用户与分组关系
@@ -40,9 +41,9 @@ public class FundGroupServiceImpl implements FundGroupService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void deleteByGroupId(Integer groupId) {
+    public void deleteByGroupId(Integer groupId, Integer userId) {
+        fundGroupUserRelationService.deleteByGroupId(groupId, userId);
         fundGroupMapper.deleteById(groupId);
-        fundGroupUserRelationService.deleteByGroupId(groupId);
         fundGroupRelationService.deleteByGroupId(groupId);
     }
 }

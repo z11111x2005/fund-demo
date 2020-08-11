@@ -1,7 +1,6 @@
 package com.liuym.fund.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.liuym.fund.entity.FundGroup;
 import com.liuym.fund.entity.FundGroupUserRelation;
 
 /**

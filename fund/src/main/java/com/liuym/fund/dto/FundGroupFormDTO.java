@@ -2,6 +2,7 @@ package com.liuym.fund.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -18,4 +19,8 @@ public class FundGroupFormDTO {
 
     @NotNull(message = "用户不能为空")
     private Integer userId;
+
+    @NotNull(message = "分组类型不能为空")
+    @Min(value = 1)
+    private Integer groupType;
 }

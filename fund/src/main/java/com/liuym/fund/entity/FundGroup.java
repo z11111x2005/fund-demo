@@ -16,4 +16,6 @@ public class FundGroup {
     private Integer groupId;
 
     private String groupName;
+
+    private Integer groupType;
 }

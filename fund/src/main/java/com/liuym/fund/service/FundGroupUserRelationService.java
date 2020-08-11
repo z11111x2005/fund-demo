@@ -22,5 +22,5 @@ public interface FundGroupUserRelationService {
 
     void add(Integer groupId, Integer userId);
 
-    void deleteByGroupId(Integer groupId);
+    void deleteByGroupId(Integer groupId, Integer userId);
 }

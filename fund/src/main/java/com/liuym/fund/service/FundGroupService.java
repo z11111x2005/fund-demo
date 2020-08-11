@@ -21,5 +21,5 @@ public interface FundGroupService {
      *
      * @param groupId
      */
-    void deleteByGroupId(Integer groupId);
+    void deleteByGroupId(Integer groupId, Integer userId);
 }

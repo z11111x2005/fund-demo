@@ -83,7 +83,7 @@ export default {
         pages: 0,
         total: 0,
         current: 1,
-        size: 10,
+        size: 5,
         type: null,
         fundName: null,
         fundCode: null

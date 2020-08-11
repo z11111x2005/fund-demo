@@ -18,11 +18,19 @@ axios.defaults.baseURL = 'http://192.168.1.125:7001/'
 axios.interceptors.request.use(config => {
   Nprogress.start()
   return config
+},
+error => {
+  Nprogress.done()
+  return Promise.reject(error)
 })
 // 在response拦截器中,隐藏进度条
-axios.interceptors.response.use(config => {
+axios.interceptors.response.use(response => {
   Nprogress.done()
-  return config
+  return response
+},
+error => {
+  Nprogress.done()
+  return Promise.reject(error)
 })
 Vue.prototype.$http = axios
 
