@@ -5,11 +5,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liuym.fund.dao.FundRealTimeMapper;
 import com.liuym.fund.entity.FundRealTime;
 import com.liuym.fund.service.FundRealTimeService;
+import com.liuym.fund.util.DateUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,6 +39,8 @@ public class FundRealTimeController {
         queryWrapper.likeRight(StringUtils.isNotBlank(fundName), "fund_name", fundName);
         queryWrapper.likeRight(StringUtils.isNotBlank(fundCode), "fund_code", fundCode);
         queryWrapper.eq(StringUtils.isNotBlank(type), "type", type);
+        Date now = new Date();
+        queryWrapper.between("gztime", DateUtil.getStartOfDay(now), DateUtil.getEndOfDay(now));
         return fundRealTimeMapper.selectPage(fundRealTimePage, queryWrapper);
     }
 
@@ -65,7 +69,8 @@ public class FundRealTimeController {
     @GetMapping("/gszzl/top10")
     public List<FundRealTime> gszzlTop10() {
         QueryWrapper<FundRealTime> queryWrapper = new QueryWrapper<>();
-        queryWrapper
+        Date now = new Date();
+        queryWrapper.between("gztime", DateUtil.getStartOfDay(now), DateUtil.getEndOfDay(now))
                 .orderByDesc("gszzl")
                 .last("limit 10");
         return fundRealTimeMapper.selectList(queryWrapper);
@@ -74,7 +79,8 @@ public class FundRealTimeController {
     @GetMapping("/dwjz/top10")
     public List<FundRealTime> dwjzTop10() {
         QueryWrapper<FundRealTime> queryWrapper = new QueryWrapper<>();
-        queryWrapper
+        Date now = new Date();
+        queryWrapper.between("gztime", DateUtil.getStartOfDay(now), DateUtil.getEndOfDay(now))
                 .orderByDesc("dwjz")
                 .last("limit 10");
         return fundRealTimeMapper.selectList(queryWrapper);
